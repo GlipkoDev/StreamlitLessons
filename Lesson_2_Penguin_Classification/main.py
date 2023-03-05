@@ -11,7 +11,7 @@ bill_depth = st.sidebar.slider("Bill depth in mm", 12.0, 23.0, 18.0, 0.2)
 flipper_length = st.sidebar.slider("Flipper length in mm", 166.0, 240.0, 200.0, 0.5)
 body_mass = st.sidebar.slider("Body mass in g", 2340, 6660, 5600, 10)
 
-df = pd.read_csv('penguins_cleaned.csv')
+df = pd.read_csv('Lesson_2_Penguin_Classification/penguins_cleaned.csv')
 x = df.drop(columns='species')
 
 user_value = dict(zip(x.columns, [island, bill_length, bill_depth, flipper_length, body_mass, sex]))
@@ -21,7 +21,7 @@ x = pd.concat([x, user_value])
 x = pd.get_dummies(x)
 x = x[-1:] 
 
-classifier = pickle.load(open('model.pickle', 'rb')) 
+classifier = pickle.load(open('Lesson_2_Penguin_Classification/model.pickle', 'rb')) 
 prediction = classifier.predict(x)
 
 species = {0:'Adelie', 1:'Gentoo', 2:'Chinstrap'}
